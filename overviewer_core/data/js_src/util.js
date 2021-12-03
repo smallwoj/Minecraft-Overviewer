@@ -359,8 +359,8 @@ overviewer.util = {
 
         overviewer.compass.addTo(overviewer.map);
         overviewer.worldCtrl.addTo(overviewer.map);
-        overviewer.coord_box.addTo(overviewer.map);
         overviewer.timeStampContol.addTo(overviewer.map);
+        overviewer.coord_box.addTo(overviewer.map);
         overviewer.progress.addTo(overviewer.map);
 
         overviewer.map.on('mousemove', function(ev) {
