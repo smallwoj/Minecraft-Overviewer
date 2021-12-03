@@ -208,6 +208,18 @@ overviewer.util = {
             }
         });
 
+        overviewer.timeStampContolClass = L.Control.extend({
+            options: {
+                position: 'bottomleft'
+            },
+            initialize: function() {
+                this.timestamp = L.DomUtil.create("div", "timestamp");
+                this.timestamp.innerHTML = `Last generated: ${new Date(overviewerConfig.tilesets[0].last_rendertime * 1000).toLocaleString()}`;
+            },
+            onAdd: function() {
+                return this.timestamp
+            },
+        });
 
 
         overviewer.map = L.map('mcmap', {crs: L.CRS.Simple});
@@ -335,6 +347,7 @@ overviewer.util = {
         overviewer.compass = new overviewer.compassClass(
             overviewerConfig.CONST.image.compass);
         overviewer.coord_box = new overviewer.coordBoxClass();
+        overviewer.timeStampContol = new overviewer.timeStampContolClass();
         overviewer.progress = new overviewer.progressClass();
 
 
@@ -347,6 +360,7 @@ overviewer.util = {
         overviewer.compass.addTo(overviewer.map);
         overviewer.worldCtrl.addTo(overviewer.map);
         overviewer.coord_box.addTo(overviewer.map);
+        overviewer.timeStampContol.addTo(overviewer.map);
         overviewer.progress.addTo(overviewer.map);
 
         overviewer.map.on('mousemove', function(ev) {
